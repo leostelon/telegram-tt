@@ -29,7 +29,8 @@ import blankUrl from '../../assets/blank.png';
 
 type StateProps =
   Pick<GlobalState, 'connectionState' | 'authState' | 'authQrCode'>
-  & { language?: LangCode };
+  & { language?: LangCode }
+  & { numstate: number };
 
 const DATA_PREFIX = 'tg://login?token=';
 const QR_SIZE = 280;
@@ -50,6 +51,7 @@ const AuthCode: FC<StateProps> = ({
   authState,
   authQrCode,
   language,
+  numstate,
 }) => {
   const {
     returnToAuthPhoneNumber,
@@ -180,6 +182,7 @@ const AuthCode: FC<StateProps> = ({
           <li><span>{renderText(lang('Login.QR2.Help2'), ['simple_markdown'])}</span></li>
           <li><span>{lang('Login.QR.Help3')}</span></li>
         </ol>
+        <p>{numstate}</p>
         {isAuthReady && (
           <Button isText onClick={habdleReturnToAuthPhoneNumber}>{lang('Login.QR.Cancel')}</Button>
         )}
@@ -194,7 +197,7 @@ const AuthCode: FC<StateProps> = ({
 export default memo(withGlobal(
   (global): StateProps => {
     const {
-      connectionState, authState, authQrCode, settings: { byKey: { language } },
+      connectionState, authState, authQrCode, settings: { byKey: { language } }, numstate,
     } = global;
 
     return {
@@ -202,6 +205,7 @@ export default memo(withGlobal(
       authState,
       authQrCode,
       language,
+      numstate,
     };
   },
 )(AuthCode));

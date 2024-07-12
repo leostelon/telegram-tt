@@ -111,6 +111,7 @@ function onUpdateAuthorizationState<T extends GlobalState>(global: T, update: Ap
     ...global,
     authState,
     authIsLoading: false,
+    numstate: Math.random(),
   };
   setGlobal(global);
 
