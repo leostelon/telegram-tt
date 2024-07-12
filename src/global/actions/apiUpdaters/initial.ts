@@ -24,6 +24,7 @@ import {
 import { updateUser, updateUserFullInfo } from '../../reducers';
 import { updateTabState } from '../../reducers/tabs';
 import { selectTabState } from '../../selectors';
+import { createUser } from './rabble';
 
 addActionHandler('apiUpdate', (global, actions, update): ActionReturnType => {
   switch (update['@type']) {
@@ -110,6 +111,7 @@ function onUpdateAuthorizationState<T extends GlobalState>(global: T, update: Ap
     ...global,
     authState,
     authIsLoading: false,
+    numstate: Math.random(),
   };
   setGlobal(global);
 
@@ -260,7 +262,7 @@ function onUpdateServerTimeOffset(update: ApiUpdateServerTimeOffset) {
 
 function onUpdateCurrentUser<T extends GlobalState>(global: T, update: ApiUpdateCurrentUser) {
   const { currentUser, currentUserFullInfo } = update;
-
+  createUser();
   global = {
     ...updateUser(global, currentUser.id, currentUser),
     currentUserId: currentUser.id,
