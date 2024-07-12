@@ -39,7 +39,7 @@ import MessageStatistics from './statistics/MessageStatistics.async';
 import Statistics from './statistics/Statistics.async';
 import StoryStatistics from './statistics/StoryStatistics.async';
 import StickerSearch from './StickerSearch.async';
-import Wallet from './Wallet';
+import Wallet from './wallet/Wallet';
 
 import './RightColumn.scss';
 
