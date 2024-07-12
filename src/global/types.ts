@@ -3204,6 +3204,7 @@ export interface ActionPayloads {
     topicId: number;
   } & WithTabId;
   closeEditTopicPanel: WithTabId | undefined;
+  closeWallet: WithTabId | undefined;
 
   uploadContactProfilePhoto: {
     userId: string;

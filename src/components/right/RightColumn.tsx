@@ -105,6 +105,7 @@ const RightColumn: FC<OwnProps & StateProps> = ({
     closeEditTopicPanel,
     closeBoostStatistics,
     setShouldCloseRightColumn,
+    closeWallet,
   } = getActions();
 
   const { width: windowWidth } = useWindowSize();
@@ -224,6 +225,9 @@ const RightColumn: FC<OwnProps & StateProps> = ({
         break;
       case RightColumnContent.EditTopic:
         closeEditTopicPanel();
+        break;
+      case RightColumnContent.Wallet:
+        closeWallet();
         break;
     }
   });
@@ -364,7 +368,7 @@ const RightColumn: FC<OwnProps & StateProps> = ({
       case RightColumnContent.EditTopic:
         return <EditTopic onClose={close} isActive={isOpen && isActive} />;
       case RightColumnContent.Wallet:
-        return <Wallet />;
+        return <Wallet onClose={close} isActive={isOpen && isActive} />;
     }
 
     return undefined; // Unreachable

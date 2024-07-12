@@ -595,6 +595,13 @@ addActionHandler('closeEditTopicPanel', (global, actions, payload): ActionReturn
   }, tabId);
 });
 
+addActionHandler('closeWallet', (global, actions, payload): ActionReturnType => {
+  const { tabId = getCurrentTabId() } = payload || {};
+  return updateTabState(global, {
+    isWallet: undefined,
+  }, tabId);
+});
+
 addActionHandler('updateArchiveSettings', (global, actions, payload): ActionReturnType => {
   const { archiveSettings } = global;
   const { isHidden = archiveSettings.isHidden, isMinimized = archiveSettings.isMinimized } = payload;
