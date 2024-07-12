@@ -51,6 +51,8 @@ export function selectRightColumnContentKey<T extends GlobalState>(
     RightColumnContent.AddingMembers
   ) : tabState.isChatInfoShown && tabState.messageLists.length ? (
     RightColumnContent.ChatInfo
+  ) : tabState.isWallet ? (
+    RightColumnContent.Wallet
   ) : undefined;
 }
 

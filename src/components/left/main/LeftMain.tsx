@@ -15,6 +15,7 @@ import { PRODUCTION_URL } from '../../../config';
 import buildClassName from '../../../util/buildClassName';
 import { IS_ELECTRON, IS_TOUCH_ENV } from '../../../util/windowEnvironment';
 
+import useAppLayout from '../../../hooks/useAppLayout';
 import useFlag from '../../../hooks/useFlag';
 import useForumPanelRender from '../../../hooks/useForumPanelRender';
 import useLastCallback from '../../../hooks/useLastCallback';
@@ -35,6 +36,7 @@ import './LeftMain.scss';
 
 import ProfilePath from '../../../assets/profile.png';
 import RabbleLogoPath from '../../../assets/rabble-logo.png';
+import WalletPath from '../../../assets/wallet.png';
 
 type OwnProps = {
   content: LeftColumnContent;
@@ -76,7 +78,8 @@ const LeftMain: FC<OwnProps> = ({
   onReset,
   onTopicSearch,
 }) => {
-  const { closeForumPanel } = getActions();
+  const { isMobile } = useAppLayout();
+  const { closeForumPanel, setShouldCloseRightColumn, openWallet } = getActions();
   const [isNewChatButtonShown, setIsNewChatButtonShown] = useState(IS_TOUCH_ENV);
   const [isElectronAutoUpdateEnabled, setIsElectronAutoUpdateEnabled] = useState(false);
 
@@ -152,6 +155,14 @@ const LeftMain: FC<OwnProps> = ({
     onContentChange(LeftColumnContent.NewGroupStep1);
   });
 
+  const handleSelectWallet = useLastCallback(() => {
+    if (isMobile) {
+      setShouldCloseRightColumn({ value: true });
+    }
+
+    openWallet({ chatId: '' });
+  });
+
   const [isStoryDialogOpen, openStoryDialog, closeStoryDialog] = useFlag(false);
   const handleOpenSelectStories = useLastCallback(() => {
     closeStoryDialog();
@@ -197,6 +208,19 @@ const LeftMain: FC<OwnProps> = ({
               ariaLabel="More actions"
             >
               <i className="icon icon-play-story" />
+            </Button>
+          </div>
+          <div
+            className="wallet-icon"
+            onClick={handleSelectWallet}
+          >
+            <Button
+              round
+              size="smaller"
+              color="translucent"
+              ariaLabel="More actions"
+            >
+              <img src={WalletPath} alt="" />
             </Button>
           </div>
           <ConfirmDialog

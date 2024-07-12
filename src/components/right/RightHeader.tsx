@@ -57,6 +57,7 @@ type OwnProps = {
   isPollResults?: boolean;
   isCreatingTopic?: boolean;
   isEditingTopic?: boolean;
+  isWallet?: boolean;
   isAddingChatMembers?: boolean;
   profileState?: ProfileState;
   managementScreen?: ManagementScreens;
@@ -124,6 +125,7 @@ enum HeaderContent {
   ManageJoinRequests,
   CreateTopic,
   EditTopic,
+  Wallet,
   SavedDialogs,
 }
 
@@ -143,6 +145,7 @@ const RightHeader: FC<OwnProps & StateProps> = ({
   isPollResults,
   isCreatingTopic,
   isEditingTopic,
+  isWallet,
   isAddingChatMembers,
   profileState,
   managementScreen,
@@ -318,6 +321,8 @@ const RightHeader: FC<OwnProps & StateProps> = ({
     HeaderContent.CreateTopic
   ) : isEditingTopic ? (
     HeaderContent.EditTopic
+  ) : isWallet ? (
+    HeaderContent.Wallet
   ) : undefined; // When column is closed
 
   const renderingContentKey = useCurrentOrPrev(contentKey, true) ?? -1;
@@ -337,6 +342,10 @@ const RightHeader: FC<OwnProps & StateProps> = ({
 
     if (userId) {
       return lang(isBot ? 'lng_info_bot_title' : 'lng_info_user_title');
+    }
+
+    if (isWallet) {
+      return lang('Wallet');
     }
 
     return lang('GroupInfo.Title');
@@ -493,6 +502,8 @@ const RightHeader: FC<OwnProps & StateProps> = ({
         return <h3 className="title">{lang('NewTopic')}</h3>;
       case HeaderContent.EditTopic:
         return <h3 className="title">{lang('EditTopic')}</h3>;
+      case HeaderContent.Wallet:
+        return <h3 className="title">{lang('Wallet')}</h3>;
       default:
         return (
           <>

@@ -253,6 +253,21 @@ addActionHandler('openSavedDialog', (global, actions, payload): ActionReturnType
   });
 });
 
+addActionHandler('openWallet', (global, actions, payload): ActionReturnType => {
+  const { chatId, tabId = getCurrentTabId(), ...otherParams } = payload;
+
+  actions.openThread({
+    chatId: global.currentUserId!,
+    threadId: '',
+    tabId,
+    ...otherParams,
+  });
+
+  return updateTabState(global, {
+    isWallet: true,
+  }, tabId);
+});
+
 addActionHandler('openThread', async (global, actions, payload): Promise<void> => {
   const {
     type, isComments, noForumTopicPanel, shouldReplaceHistory, shouldReplaceLast,

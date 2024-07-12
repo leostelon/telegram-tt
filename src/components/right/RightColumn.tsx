@@ -39,6 +39,7 @@ import MessageStatistics from './statistics/MessageStatistics.async';
 import Statistics from './statistics/Statistics.async';
 import StoryStatistics from './statistics/StoryStatistics.async';
 import StickerSearch from './StickerSearch.async';
+import Wallet from './Wallet';
 
 import './RightColumn.scss';
 
@@ -129,6 +130,7 @@ const RightColumn: FC<OwnProps & StateProps> = ({
   const isAddingChatMembers = contentKey === RightColumnContent.AddingMembers;
   const isCreatingTopic = contentKey === RightColumnContent.CreateTopic;
   const isEditingTopic = contentKey === RightColumnContent.EditTopic;
+  const isWallet = contentKey === RightColumnContent.Wallet;
   const isOverlaying = windowWidth <= MIN_SCREEN_WIDTH_FOR_STATIC_RIGHT_COLUMN;
 
   const [shouldSkipTransition, setShouldSkipTransition] = useState(!isOpen);
@@ -361,6 +363,8 @@ const RightColumn: FC<OwnProps & StateProps> = ({
         return <CreateTopic onClose={close} isActive={isOpen && isActive} />;
       case RightColumnContent.EditTopic:
         return <EditTopic onClose={close} isActive={isOpen && isActive} />;
+      case RightColumnContent.Wallet:
+        return <Wallet />;
     }
 
     return undefined; // Unreachable
@@ -391,6 +395,7 @@ const RightColumn: FC<OwnProps & StateProps> = ({
           isPollResults={isPollResults}
           isCreatingTopic={isCreatingTopic}
           isEditingTopic={isEditingTopic}
+          isWallet={isWallet}
           isAddingChatMembers={isAddingChatMembers}
           profileState={profileState}
           managementScreen={managementScreen}

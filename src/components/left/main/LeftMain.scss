@@ -90,9 +90,15 @@
     .profile-right {
       display: flex;
       align-items: center;
-      .story-icon {
-          padding-right: 16px;
+      .story-icon, .wallet-icon {
+        padding-right: 8px;
+      }
+      .wallet-icon {
+        img {
+          height: 20px;
+          width: 20px;
         }
+      }
       .profile-img {
         cursor: pointer;
         img {
