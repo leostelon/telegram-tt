@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "public": "dist",
+  "public": false,
   "builds": [
     {
       "src": "dist/**/*",
       "use": "@vercel/static"
     }
   ],
+  "outputDirectory": "build",
   "routes": [
     {
       "src": "/(.*)",
