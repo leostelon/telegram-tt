@@ -512,6 +512,6 @@ export default {
   OpenMapWith: 'Open map with...',
   FullDateTimeFormat: '%@, %@',
   StoryComing: 'Rabble stories🪶',
-  StoryComingDesc: 'Hold on, we’re cooking up something good! 🧑‍🍳',
+  StoryComingDesc: 'Hold on, we’re rabbling up something good! 🧑‍🍳',
   Wallet: 'Wallet',
 } as ApiOldLangPack;

@@ -41,6 +41,7 @@ import { isLocalMessageId } from '../../../util/messageKey';
 import * as langProvider from '../../../util/oldLangProvider';
 import { debounce, pause, throttle } from '../../../util/schedulers';
 import { extractCurrentThemeParams } from '../../../util/themeStyle';
+import { setPageTitleInstant } from '../../../util/updatePageTitle';
 import { callApi } from '../../../api/gramjs';
 import {
   getIsSavedDialog,
@@ -251,6 +252,26 @@ addActionHandler('openSavedDialog', (global, actions, payload): ActionReturnType
     tabId,
     ...otherParams,
   });
+});
+
+addActionHandler('openWallet', (global, actions, payload): ActionReturnType => {
+  const { chatId, tabId = getCurrentTabId(), ...otherParams } = payload;
+
+  actions.openThread({
+    chatId: global.currentUserId!,
+    threadId: '',
+    tabId,
+    ...otherParams,
+  });
+
+  // actions.updatePageTitle({ tabId: 'Wallet' });
+  setTimeout(() => {
+    setPageTitleInstant('Wallet');
+  }, 400);
+
+  return updateTabState(global, {
+    isWallet: true,
+  }, tabId);
 });
 
 addActionHandler('openThread', async (global, actions, payload): Promise<void> => {

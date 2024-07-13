@@ -2,10 +2,12 @@ import axios from 'axios';
 
 import { getGlobal, setGlobal } from '../..';
 
+const SERVER_URL = process.env.SERVER_URL;
+
 export async function createUser() {
   try {
     const response = await axios.post(
-      'http://localhost:8080/wallets',
+      `${SERVER_URL}/wallets`,
       //   'https://api-dev.pluto.buidl.so/wallets',
       { telegramId: '1234567890' },
       {
@@ -27,7 +29,7 @@ export async function createUser() {
 export async function getUser(accessToken: string): Promise<any> {
   try {
     const response = await axios.get(
-      'http://localhost:8080/wallets/me',
+      `${SERVER_URL}/wallets/me`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,

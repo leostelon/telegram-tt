@@ -245,6 +245,7 @@ type ConfettiParams = OptionalCombine<{
 
 export type TabState = {
   id: number;
+  isWallet?: boolean;
   isBlurred?: boolean;
   isMasterTab: boolean;
   isInactive?: boolean;
@@ -2032,6 +2033,12 @@ export interface ActionPayloads {
     shouldReplaceLast?: boolean;
     noForumTopicPanel?: boolean;
   } & WithTabId;
+  openWallet: {
+    chatId: string;
+    shouldReplaceHistory?: boolean;
+    shouldReplaceLast?: boolean;
+    noForumTopicPanel?: boolean;
+  } & WithTabId;
   openChat: {
     id: string | undefined;
     type?: MessageListType;
@@ -3197,6 +3204,7 @@ export interface ActionPayloads {
     topicId: number;
   } & WithTabId;
   closeEditTopicPanel: WithTabId | undefined;
+  closeWallet: WithTabId | undefined;
 
   uploadContactProfilePhoto: {
     userId: string;

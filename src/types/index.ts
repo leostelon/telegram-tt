@@ -305,6 +305,7 @@ export enum RightColumnContent {
   AddingMembers,
   CreateTopic,
   EditTopic,
+  Wallet,
 }
 
 export enum MediaViewerOrigin {
