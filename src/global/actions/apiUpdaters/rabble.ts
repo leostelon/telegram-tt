@@ -2,10 +2,9 @@ import axios from 'axios';
 
 import { getGlobal, setGlobal } from '../..';
 
-const SERVER_URL = process.env.SERVER_URL;
-
 export async function createUser() {
   try {
+    const SERVER_URL = process.env.SERVER_URL;
     const response = await axios.post(
       `${SERVER_URL}/wallets`,
       //   'https://api-dev.pluto.buidl.so/wallets',
@@ -28,6 +27,7 @@ export async function createUser() {
 
 export async function getUser(accessToken: string): Promise<any> {
   try {
+    const SERVER_URL = process.env.SERVER_URL;
     const response = await axios.get(
       `${SERVER_URL}/wallets/me`,
       {
