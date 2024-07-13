@@ -134,6 +134,7 @@ const AuthCode: FC<StateProps> = ({
     if (isConnected) {
       void oldSetLanguage(DEFAULT_LANG_CODE);
     }
+    setSettingOption({ theme: 'light' });
   }, [isConnected]);
 
   const handleLangChange = useCallback(() => {

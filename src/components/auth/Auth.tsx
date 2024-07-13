@@ -21,6 +21,8 @@ import AuthRegister from './AuthRegister.async';
 
 import './Auth.scss';
 
+import RabbleLogoPath from '../../assets/rabble-logo.png';
+
 type StateProps = Pick<GlobalState, 'authState'>;
 
 const Auth: FC<StateProps> = ({
@@ -93,6 +95,9 @@ const Auth: FC<StateProps> = ({
   return (
     <Transition activeKey={getActiveKey()} name="fade" className="Auth" ref={containerRef}>
       {getScreen()}
+      <div className="rabble-logo">
+        <img src={RabbleLogoPath} alt="" />
+      </div>
     </Transition>
   );
 };
