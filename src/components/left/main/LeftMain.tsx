@@ -177,7 +177,6 @@ const LeftMain: FC<OwnProps> = ({
     } else if (isMouseInside.current || IS_TOUCH_ENV) {
       setIsNewChatButtonShown(true);
     }
-    handleSelectWallet();
 
     return () => {
       if (autoCloseTimeout) {
